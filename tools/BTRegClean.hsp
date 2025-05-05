@@ -1,0 +1,212 @@
+#uselib "advapi32.dll"
+#func RegCloseKey "RegCloseKey" sptr
+#cfunc RegDeleteKeyValueA "RegDeleteKeyValueA" sptr, sptr, sptr
+#func RegCreateKeyExA "RegCreateKeyExA" sptr, sptr, sptr, sptr, sptr, sptr, sptr, sptr, sptr
+#func RegOpenKeyExA "RegOpenKeyA" sptr, sptr, sptr, sptr, sptr
+#func RegSetValueExA "RegSetValueExA" sptr, sptr, sptr, sptr, sptr, sptr
+
+#uselib "shell32.dll"
+#cfunc IsUserAnAdmin "IsUserAnAdmin"
+
+#uselib "user32.dll"
+#func global MessageBoxA "MessageBoxA" sptr,sptr,sptr,sptr
+
+#define RegCreateKeyEx RegCreateKeyExA
+#define RegSetValueEx RegSetValueExA
+
+
+#define NULL 0
+
+#define GENERIC_WRITE 30
+#define RIGHT_DELETE 0x00010000
+#define READ_CONTROL 0x00020000
+#define WRITE_DAC 0x00040000
+#define WRITE_OWNER 0x00080000
+#define SYNCHRONIZE 0x00100000
+
+
+#define MB_ICONERROR 0x00000010
+#define MB_OK 0x00000000
+
+
+#define STANDARD_RIGHTS_REQUIRED 0x000F0000
+#define STANDARD_RIGHTS_ALL 0x001F0000
+#define SPECIFIC_RIGHTS_ALL 0x0000FFFF
+#define OBJ_CASE_INSENSITIVE 0x00000040
+
+
+
+#define HKEY_CLASS_ROOT 0x80000000
+#define HKEY_CURRENT_USER 0x80000001
+#define HKEY_LOCAL_MACHINE 0x80000002
+#define HKEY_USERS 0x80000003
+#define HKEY_CURRENT_CONFIG 0x80000005
+
+#define KEY_READ 0x00020019
+#define KEY_WRITE 0x00020006
+#define KEY_ALL_ACCESS 0x000F003F
+#define REG_OPTION_NON_VOLATILE 0x00000000
+
+#define REG_SZ 1
+#define REG_BINARY 3
+#define REG_DWORD 4
+
+
+#packopt runtime "Bluetooth.res"
+#packopt xsize 320
+#packopt ysize 320
+#packopt name "BTRegClean"
+/********************************Test Script using ADVAPI32********************************
+LSTATUS RegCreateKeyExA(
+  [in]            HKEY                        hKey,
+  [in]            LPCSTR                      lpSubKey,
+                  DWORD                       Reserved,
+  [in, optional]  LPSTR                       lpClass,
+  [in]            DWORD                       dwOptions,
+  [in]            REGSAM                      samDesired,
+  [in, optional]  const LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+  [out]           PHKEY                       phkResult,
+  [out, optional] LPDWORD                     lpdwDisposition
+);
+
+LSTATUS RegSetValueExA(
+  [in]           HKEY       hKey,
+  [in, optional] LPCSTR     lpValueName,
+                 DWORD      Reserved,
+  [in]           DWORD      dwType,
+  [in]           const BYTE *lpData,
+  [in]           DWORD      cbData
+);
+
+LSTATUS RegOpenKeyExA(
+  [in]           HKEY   hKey,
+  [in, optional] LPCSTR lpSubKey,
+  [in]           DWORD  ulOptions,
+  [in]           REGSAM samDesired,
+  [out]          PHKEY  phkResult
+);
+
+LSTATUS RegDeleteKeyValueA(
+  [in]           HKEY   hKey,
+  [in, optional] LPCSTR lpSubKey,
+  [in, optional] LPCSTR lpValueName
+);
+
+******************************************************************************************/
+
+*main_screen
+	screen 0, 700, 640, 8
+
+	bool = IsUserAnAdmin()
+	if bool == 0{
+		MessageBoxA hwnd, "You need to run as Administrator", "Error", MB_ICONERROR | MB_OK
+		end
+	}
+
+	title "Registry Cleaner For Bluetooth.exe Ver 1.0.7.0"
+	button gosub "Repair", *delreg
+	mes "0 = ERROR_SUCCESS"
+	mes "2 = ERROR_FILE_NOT_FOUND"
+	mes "3 = ERROR_PATH_NOT_FOUND"
+	mes "4 = ERROR_TOO_MANY_OPEN_FILES"
+	mes "5 = ERROR_ACCESS_DENIED"
+	mes ""
+	stop
+
+/*
+*write
+	lpSubKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"	
+	regName = "DisableChangePassword"
+	repeat 13
+	mes lpSubKey
+	//mes regName
+	mes LSTATUS
+	loop
+	stop
+*/
+
+*delreg
+	lpSubKey = "Software\\Policies\\Microsoft\\Windows\\System"							//Block 1 Enable Command Prompt
+	RegOpenKeyExA HKEY_CURRENT_USER, varptr(lpSubKey), 0, KEY_WRITE, varptr(hKey)
+	
+	regName = "DisableCMD"
+	LSTATUS = RegDeleteKeyValueA (HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	RegCloseKey hKey
+
+	
+    lpSubKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"			//Block 2
+	RegOpenKeyExA HKEY_CURRENT_USER, varptr(lpSubKey), 0, KEY_WRITE, varptr(hKey) 
+	
+	regName = "DisableChangePassword"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "DisableLockWorkstation"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "DisableRegistryTools"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "DisableTaskMgr"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	RegCloseKey hKey
+
+
+	lpSubKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"			//Block 3
+	RegOpenKeyExA HKEY_LOCAL_MACHINE, varptr(lpSubKey), 0, KEY_WRITE, varptr(hKey)
+	
+	regName = "NoLogoff"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "NoDesktop"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "NoControlPanel"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "NoWinKeys"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "NoRun"
+	LSTATUS = RegDeleteKeyValueA(HKEY_CURRENT_USER, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	RegCloseKey hKey
+
+	
+	lpSubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"			//Block 4
+	RegOpenKeyExA HKEY_LOCAL_MACHINE, varptr(lpSubKey), 0, KEY_WRITE, varptr(hKey)
+
+	regName = "EnableLUA"
+	LSTATUS = RegDeleteKeyValueA(HKEY_LOCAL_MACHINE, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	regName = "HideFastUserSwitching"
+	LSTATUS = RegDeleteKeyValueA(HKEY_LOCAL_MACHINE, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	RegCloseKey hKey
+
+
+	lpSubKey = "SOFTWARE\\Policies\\Microsoft\\Windows Defender"							//Block 5
+	RegOpenKeyExA HKEY_LOCAL_MACHINE, varptr(lpSubKey), 0, KEY_WRITE, varptr(hKey)
+	
+	regName = "DisableAntiSpyware"
+	LSTATUS = RegDeleteKeyValueA(HKEY_LOCAL_MACHINE, varptr(lpSubKey), varptr(regName))
+	mes lpSubKey + "\\" + regName
+	mes LSTATUS
+	RegCloseKey hKey
+	
+	return
+
+	

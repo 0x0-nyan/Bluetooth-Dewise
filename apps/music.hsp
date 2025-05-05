@@ -1,0 +1,65 @@
+/***************************************************************
+ * Name:      music.hsp
+ * Purpose:   Line In
+ * Author:    0x0_nyan
+ * Created:   2025-04-27
+ **************************************************************/
+
+
+*task_music
+	#if MUSIC_EN
+	MSG_WORKMODE = "task_music"
+	if MSG_MUSIC_AVAILABLE == 0 : goto *task_fm
+	mmplay BPF_MUSIC_WAV
+	gsel 0, 0
+	oncmd gosub *replay, 0x03B9
+	//dialog MSG_MUSIC_AVAILABLE
+
+*TASK_MUSIC_LOOP
+
+	if reboot == 1{
+		reboot = 0
+		goto *WAKEUP_2
+	}
+
+
+	if MSG_CHANGE_WORKMODE == 1{
+		MSG_CHANGE_WORKMODE = 0
+		goto *task_manager
+	}
+	
+	pos 0, 0
+	if(task_loop_count == 0) or (task_loop_count == 200): gcopy LED_OFF, 0, 0, 640, 282
+	if(task_loop_count == 100) or (task_loop_count == 300): gcopy LED_ON, 0, 0, 640, 282
+	if task_loop_count == 190{
+		if MSG_MUSIC_AVAILABLE == 1{
+			oncmd 0
+			mci "play track" + CURRENT_TRACK + " notify"
+			oncmd 1
+			goto *MAIN_LOOP
+		} else {
+			MSG_CHANGE_WORKMODE = 1
+		}
+	}
+	wait 1
+	task_loop_count++
+	
+	if task_loop_count == 399{
+		task_loop_count = 0
+		goto *MAIN_LOOP
+	} else {
+		goto *TASK_MUSIC_LOOP
+	}
+
+#endif
+	goto *task_fm
+
+*replay
+	oncmd 0
+	mci "seek track" + CURRENT_TRACK + " to start"
+	NEXT_TRACK = CURRENT_TRACK + 1
+	if NEXT_TRACK > NumberOfTracks : NEXT_TRACK = 1
+	mci "play track" + NEXT_TRACK + " notify"
+	CURRENT_TRACK = NEXT_TRACK
+	oncmd 1
+	return
