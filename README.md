@@ -1,5 +1,5 @@
 
-# Bluetooth Dewise
+# Bluetooth.exe
 
 A malware based on "The Bluetooth device is ready to pair" meme.
 Suitable for learning Windows APIs in bizzare, dangerous, (and maybe funny) way.
