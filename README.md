@@ -1,67 +1,45 @@
 
-# Bluetooth.exe
+# Dewise.exe (a.k.a Bluetooth.exe) Version 2.1
 
-A malware based on "The Bluetooth device is ready to pair" meme.
-Suitable for learning Windows APIs in bizzare, dangerous, (and maybe funny) way.
-
-You may think this code is quite crappy because it just uses subprocess and subroutine jump instead of multi threading. GitHub says 85% C, but obviously this code is not written in C, in fact it is written in language called "HSP" aka Hot Soup Processor. Since it doesn't support callback function, I had to code in this crappy way. Although there is a plugin to enable callback on HSP, but it makes the program unstable. Recently I started playing with C++ authentically and I'm quite amazed with it, so I would like to remake this program someday.
-
-Credit to MEMZ for StretchBlt, DrawIcon, MBR Writer.
-![Screenshot](screenshot.png)
+A destructive malware based on The Bluetooth device is ready to pair meme
 
 ## DISCLAIMER
 
-WARNING: THIS PROGRAM WILL DESTROY YOUR DATA AND COMPUTER.
-IF YOU ARE PLANNING TO PRANK ON WORKING MACHINE, GET AWAY FROM THIS PAGE.
-IF YOU ARE TRYING TO TEST THIS PROGRAM, YOU MUST USE A VIRTUAL OR DEDICATED MACHINE FOR TESTING.
+WARNING: 
+ THIS PROGRAM WILL DESTROY YOUR DATA AND COMPUTER. 
+ PRANKING ON REAL MACHINE IS PROHIBITED.
+ IF YOU ARE TRYING TO TEST THIS PROGRAM, YOU MUST USE A VIRTUAL OR DEDICATED MACHINE FOR TESTING.
 
-THIS PROGRAM IS NOT SUITABLE FOR LAYMEN AND IS INTENDED ONLY FOR ENTERTAINMENT AND EDUCATIONAL PURPOSES. NEVER USE ANY OF THIS TO HARM ANYONE'S COMPUTERS OR PROPERTIES, OR ANY MALICIOUS PURPOSES.
-I AM NOT RESPONSIBLE FOR ANY DAMAGES CAUSED BY USING THIS PROGRAM.
+ THIS PROGRAM IS INTENDED ONLY FOR ENTERTAINMENT AND EDUCATIONAL PURPOSES.
+ NEVER USE ANY OF THIS TO HARM ANYONE'S COMPUTERS OR PROPERTIES, OR OTHER ANY MALICIOUS PURPOSES.
+ I AM NOT RESPONSIBLE FOR ANY DAMAGES CAUSED BY USING THIS PROGRAM.
 
-CAUTION: To avoid damages to speakers and hearing, set volume to lower level and do not use headphones. Some payload generate low frequency noise which in some cases is able to blowout speakers even in non-destructive mode when volume is set to higher level.
+CAUTION: 
+ Some payloads generate very loud sounds.
 
-## User Interface and Functions
-
-By running program, you will see a black object, which is imitating a dirt-cheap Bluetooth speaker. Most of buttons are fake, but a button placed on right side is actually a mode button and you can change its mode by clicking it .
-
- - Bluetooth
- - (MP3 Player)
- - Radio
- - AUX Input
-
- Again, most of them are fake, but MP3 player mode can play MP3 file(s).
- By default, MP3 function is not activated. To activate it, just put MP3 file(s) in the directory with Bluetooth.exe
-
-Note: In this version, the program doesn't auto-detect while it's running.
-
-Caution: This program is not a proper music player, thus it is not able to use this as music player.
+## Notice
+ To run this program in Windows XP, please add at least 1 argument listed below.
+ If there are no arguments you want to add, please add a dummy argument in command line (eg. /xp), otherwise the program will instantly crash.
 
 
-
-
-# Non-Destructive Mode (Default)
-
-By default, this program will run in non-destructive mode, which is considered as safe.
-This mode is not made to destroy your data or computer.
-However I still highly recommend to run on virtual machine.
 
 ## Non-Destructive Payloads
 
 These are non-destructive payloads, which are considered as safe.
 
-- Pop-up
-- File Opener
-- Random Sound Player
-- Icon Drawer
-- Tunnel Effect
-- Window Shaker
-- RAW Audio Attack
+- Popups
+- Play random sounds
+- Draw icons and texts
+- Tunnel Effect and Window Shaker
+- RAW PCM Audio / Bytebeat
+- Backdoor Mode
+
 
 # Destructive Mode (DANGER)
 
 In destructive mode, the program will destroy your data and make your computer unusable.
 By running it in this mode, you will see a warning dialog for 3 times. Please read the warning well and make your decision. DO NOT use this option if you don't know what you're doing or you cannot understand what it says.
-To run it in destructive mode, you have to add */DESTRUCTIVE* in command line.
+To run it in destructive mode, add */DESTRUCTIVE* in command line.
 
 Note: This command line parameter is case-sensitive for safety reason.
 
@@ -70,16 +48,25 @@ Note: This command line parameter is case-sensitive for safety reason.
 These payloads will not be executed without command line option */DESTRUCTIVE*.
 Those destroy data and operating system, which in result make your computer unusable.
 
-- Process Protection
-- MBR Writer
-- Registry Writer
-- Blue Screen Of Death
-- RMDIR (Auxiliary Payload)
-- Force Shutdown (Auxiliary payload)
+- Process Protection (except for XP)
+- MBR Overwrite
+- Disable some Windows features
+- Invoke BSOD
+- RMDIR / Force Shutdown (will be executed if you fix MBR, except for XP)
 
+## Command Line Arguments
+- /DESTRUCTIVE : Run this program in destructive mode (Case Sensitive).
+- /B : Run this program in backdoor mode. There is a point to trigger the main window in left down corner on the screen.
 
+## Easter Eggs
+- Fake Bluetooth Audio / MP3 Player / Fake FM Radio / Fake AUX In (Can be switched by clicking mode button above the LED)
+- MP3 Player is real. If you put some MP3 files into your Music directory, you can play it in music play mode instead of bulit-in Bytebeats.
+- Pressing ALT + F4 in DESTRUCTIVE mode the program will invoke BSOD with rare code
 
-# Backdoor Mode
+## Credit:
+- MBR is generated by https://github.com/Mist0090/PngMBR-Builder
 
-By adding /b option in command line, the program will not show main window at startup.
-There is a point to trigger the main window in somewhere.
+## Coded in:
+- C++ with MSVS
+- Took around 8 days
+
