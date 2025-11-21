@@ -4,7 +4,8 @@
 A malware based on "The Bluetooth device is ready to pair" meme.
 Suitable for learning Windows APIs in bizzare, dangerous, (and maybe funny) way.
 
-You may think this code is quite crappy because it just uses subprocess and subroutine jump instead of multi threading. GitHub says 85% C, but obviously this code is not written in C, in fact it is written in language called "HSP" aka Hot Soup Processor. Since it doesn't support callback function, I had to code in this crappy way. Although there is a plugin to enable callback on HSP, but it makes the program unstable. Recently I started playing with C++ authentically and I'm quite amazed with it, so I would like to remake this program someday.
+You may think this code is quite crappy because it just uses subprocess and subroutine jump instead of multi threading. This is because it is written in language called "HSP" aka Hot Soup Processor. Since it doesn't support callback function, I had to code in this crappy way. Although there is a plugin to enable callback on HSP, but it makes the program unstable. <br>
+2025-Nov-21: Finally version 2.1 is available. It has almost same payloads and behaviour as this one, but written in C++.
 
 Credit to MEMZ for StretchBlt, DrawIcon, MBR Writer.
 ![Screenshot](screenshot.png)
