@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dewise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskScheduler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="payloads.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Dewise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskScheduler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="payloads.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Dewise.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Dewise.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\popup10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\X6_Black.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ui_resource\X6_Black_ON.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wave1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sdram.app" />
+    <None Include="boot.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="tone_resource\0.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\1.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\2.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\3.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\4.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\5.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\6.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\7.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\8.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\9.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\bt.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\bt_noise.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\conn_hid.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\connect.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\discon_hid.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\disconnect.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\echo.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\hum.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\linein.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\linein2.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\low_power.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\music.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\music2.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\noise.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\pc.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\power_off.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\power_up.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\radio.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\radio2.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\record.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\ring.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\rtc.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\sdram.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="tone_resource\wait.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+</Project>
