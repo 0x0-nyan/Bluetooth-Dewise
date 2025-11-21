@@ -2,7 +2,7 @@
 # Dewise.exe (a.k.a Bluetooth.exe) Version 2.1
 
 A destructive malware based on The Bluetooth device is ready to pair meme
-
+![Screenshot](ScreenShotV2.1.png)
 ## DISCLAIMER
 
 WARNING: 
