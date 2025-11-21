@@ -68,5 +68,5 @@ Those destroy data and operating system, which in result make your computer unus
 
 ## Coded in:
 - C++ with MSVS
-- Took around 8 days
+- Took around 15 days
 
